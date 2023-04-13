@@ -1,0 +1,12 @@
+.Area {
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    text-align: left;
+}
+
+.Area h2 {
+    margin: 0;
+    /* line-height: 1.2; */
+}
