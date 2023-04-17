@@ -1,0 +1,36 @@
+.Modal {
+	position: fixed;
+	inset: 0;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: rgba(0, 0, 0, 0.5);
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.Modal.show {
+	opacity: 1;
+	visibility: visible;
+}
+
+.Modal-content {
+	background-color: rgb(32, 27, 24);
+	box-shadow: 0 2px 20px rgba(0, 0, 0, 1);
+	/* background-color: grey; */
+	padding: 20px;
+	border-radius: 10px;
+	min-width: 350px;
+	min-height: 500px;
+	max-height: 75%;
+	overflow: auto;
+	opacity: 0;
+	transition: opacity 0.2s ease-in-out;
+}
+
+.Modal.show .Modal-content {
+	opacity: 1;
+}

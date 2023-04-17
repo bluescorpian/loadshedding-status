@@ -1,0 +1,19 @@
+.Search-area {
+	background-color: rgb(53, 39, 38);
+	color: rgb(241, 227, 226);
+	padding: 15px;
+	border-radius: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.Search-area h2 {
+	margin: 0;
+}
+
+.Search-area p {
+	margin: 0;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}

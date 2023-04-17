@@ -1,7 +1,21 @@
+/* .App {
+	margin: 0 auto;
+	max-width: 500px;
+} */
 main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.add-area {
+	color: rgb(234, 191, 188);
+	background-color: rgb(43, 33, 32);
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	border-radius: 50px;
+	border: none;
+	cursor: pointer;
 }
