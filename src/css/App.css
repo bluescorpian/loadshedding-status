@@ -11,11 +11,16 @@ main {
 }
 
 .add-area {
-	color: rgb(234, 191, 188);
-	background-color: rgb(43, 33, 32);
+	color: #ffffff;
+	background-color: #212121;
 	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
 	padding: 10px;
 	border-radius: 50px;
 	border: none;
 	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.add-area:active {
+	background-color: #111;
 }

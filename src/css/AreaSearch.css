@@ -17,3 +17,29 @@
 	margin-top: 10px;
 	margin-bottom: 5px;
 }
+
+#searchBox {
+	color: #ffffff;
+	background-color: #222;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	border-radius: 50px;
+	border: solid #444 2px;
+	width: 100%;
+}
+
+#searchBox:disabled {
+	animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}

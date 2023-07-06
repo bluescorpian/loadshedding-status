@@ -12,7 +12,19 @@ function App() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [showAddAreaModal, setShowAddAreaModal] = useState(false);
-	const [areasIds, setAreasIds] = useState(['nelsonmandelabay-3-charloarea5']);
+	const [areasIds, setAreasIds] = useState(() => {
+		const savedAreasIds = localStorage.getItem('areas');
+		return savedAreasIds ? JSON.parse(savedAreasIds) : [];
+	});
+
+	const handleError = (err) => {
+		console.error(err);
+		setError(typeof err === 'string' ? err : err.message || 'Something went wrong');
+	};
+
+	useEffect(() => {
+		localStorage.setItem('areas', JSON.stringify(areasIds));
+	}, [areasIds]);
 
 	useEffect(() => {
 		Promise.all([
@@ -22,14 +34,11 @@ function App() {
 			),
 		])
 			.then(([stageData, areasData]) => {
-				console.log(stageData, areasData);
-				setCurrentStage(stageData.status.eskom.stage);
+				if (stageData.error || areasData.error) throw stageData.error || areasData.error;
 				setSelectedAreas(areasData.map((area, index) => ({ ...area, id: areasIds[index] })));
+				setCurrentStage(stageData.status.eskom.stage);
 			})
-			.catch((err) => {
-				console.error(err);
-				setError(err.message || 'Something went wrong');
-			})
+			.catch(handleError)
 			.finally(() => setIsLoading(false));
 	}, [areasIds]);
 

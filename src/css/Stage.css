@@ -9,6 +9,11 @@
 	margin-bottom: 30px;
 }
 
+.Stage.stage-0 {
+	background-color: green;
+}
+
+/* TODO: fix idk */
 .Stage h2 {
 	line-height: 1.3;
 	font-size: 2rem;

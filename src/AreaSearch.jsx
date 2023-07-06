@@ -4,13 +4,19 @@ import './css/AreaSearch.css';
 
 export default function AreaSearch({ show, handleClose, handleAddArea }) {
 	const [searchAreas, setSearchAreas] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	const searchArea = (search) => {
-		fetch('https://eskomsepush-api-proxy.dannyk.workers.dev/areas_search?text=' + search)
+		setLoading(true);
+		fetch('https://eskomsepush-api-proxy.dannyk.workers.dev/areas_search?test=current&text=' + search)
 			.then((res) => res.json())
 			.then((data) => {
-				setSearchAreas(data.areas);
-			});
+				if (data.error) {
+					alert('Failed to fetch areas: ' + data.error);
+					console.error(data.error);
+				} else setSearchAreas(data.areas.slice(0, 5));
+			})
+			.finally(() => setLoading(false));
 	};
 
 	const handleSearchKeyDown = (e) => {
@@ -22,7 +28,7 @@ export default function AreaSearch({ show, handleClose, handleAddArea }) {
 	return (
 		<>
 			<Modal show={show} handleClose={handleClose}>
-				<input type='text' placeholder='Search Area' onKeyDown={handleSearchKeyDown}></input>
+				<input id='searchBox' type='text' placeholder='Search Area' onKeyDown={handleSearchKeyDown} autoComplete='false' disabled={loading}></input>
 				{searchAreas.map((area) => {
 					return (
 						<div
