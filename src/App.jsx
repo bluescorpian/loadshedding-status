@@ -1,14 +1,13 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import Stage from './Stage';
 import Area from './Area';
-import Modal from './Modal';
 import './css/App.css';
 import AreaSearch from './AreaSearch';
 
 // TODO: center flexbox with margin
 function App() {
 	const [currentStage, setCurrentStage] = useState(null);
-	const [selectedAreas, setSelectedAreas] = useState(null);
+	const [selectedAreas, setSelectedAreas] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [showAddAreaModal, setShowAddAreaModal] = useState(false);
@@ -51,6 +50,7 @@ function App() {
 	};
 
 	const handleAddArea = (areaId) => {
+		if (areasIds.includes(areaId)) return;
 		setAreasIds([...areasIds, areaId]);
 	};
 
@@ -64,9 +64,17 @@ function App() {
 				) : (
 					<>
 						<Stage stage={currentStage}></Stage>
-						{selectedAreas.map((info) => (
-							<Area key={info.id} areaInformation={info}></Area>
-						))}
+						{areasIds.length
+							? selectedAreas.map((info) => (
+									<Area
+										key={info.id}
+										areaInformation={info}
+										deleteArea={() => {
+											setAreasIds(areasIds.filter((id) => id !== info.id));
+										}}
+									></Area>
+							  ))
+							: 'No areas selected'}
 
 						<button className='add-area' onClick={openShowAreaModal}>
 							Add area
