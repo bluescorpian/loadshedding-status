@@ -20,7 +20,7 @@ export default function AreaSearch({ show, handleClose, handleAddArea }) {
 	};
 
 	const handleSearchKeyDown = (e) => {
-		if (e.code === 'Enter') {
+		if (e.key === 'Enter') {
 			searchArea(e.target.value);
 		}
 	};
