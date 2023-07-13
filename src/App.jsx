@@ -27,9 +27,13 @@ function App() {
 
 	useEffect(() => {
 		Promise.all([
-			fetch('https://eskomsepush-api-proxy.dannyk.workers.dev/status?test=current').then((res) => res.json()),
+			fetch('https://eskomsepush-api-proxy.dannyk.workers.dev/status').then((res) => res.json()),
 			Promise.all(
-				areasIds.map((areaId) => fetch(`https://eskomsepush-api-proxy.dannyk.workers.dev/area?id=${areaId}&test=current`).then((res) => res.json()))
+				areasIds.map((areaId) =>
+					fetch(`https://eskomsepush-api-proxy.dannyk.workers.dev/area?id=${areaId}${import.meta.env.DEV ? '&test=current' : ''}`).then((res) =>
+						res.json()
+					)
+				)
 			),
 		])
 			.then(([stageData, areasData]) => {
