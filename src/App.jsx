@@ -27,10 +27,10 @@ function App() {
 
 	useEffect(() => {
 		Promise.all([
-			fetch('https://eskomsepush-api-proxy.dannyk.workers.dev/status').then((res) => res.json()),
+			fetch('https://eskomsepush-api-proxy.bluescorpian.workers.dev/status').then((res) => res.json()),
 			Promise.all(
 				areasIds.map((areaId) =>
-					fetch(`https://eskomsepush-api-proxy.dannyk.workers.dev/area?id=${areaId}${import.meta.env.DEV ? '&test=current' : ''}`).then((res) =>
+					fetch(`https://eskomsepush-api-proxy.bluescorpian.workers.dev/area?id=${areaId}${import.meta.env.DEV ? '&test=current' : ''}`).then((res) =>
 						res.json()
 					)
 				)

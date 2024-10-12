@@ -8,7 +8,7 @@ export default function AreaSearch({ show, handleClose, handleAddArea }) {
 
 	const searchArea = (search) => {
 		setLoading(true);
-		fetch(`https://eskomsepush-api-proxy.dannyk.workers.dev/areas_search?text=${search}`)
+		fetch(`https://eskomsepush-api-proxy.bluescorpian.workers.dev/areas_search?text=${search}`)
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.error) {
